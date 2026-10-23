@@ -14,7 +14,7 @@
 # Env:
 #   YOUTUBE_API_KEY   Google API key with YouTube Data API v3 enabled. Never print it.
 #   YOUTUBE_API_URL   default https://www.googleapis.com/youtube/v3
-# Inside a Paperclip run without YOUTUBE_API_KEY in env, the key is read from
+# Inside a Paperclip run where YOUTUBE_API_KEY is unset, the key is read from
 # the agent's granted secret `YOUTUBE_API_KEY` (or `youtube_api_key`).
 #
 # The key is sent as the `x-goog-api-key` header through curl's config on
@@ -27,7 +27,7 @@ API_URL="${YOUTUBE_API_URL:-https://www.googleapis.com/youtube/v3}"
 API_URL="${API_URL%/}"
 
 die() { echo "yt: $1" >&2; exit "${2:-2}"; }
-usage() { sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,23p' "$0" | sed 's/^# \{0,1\}//'; }
 
 load_key() {
   if [[ -n "${YOUTUBE_API_KEY:-}" ]]; then return; fi
